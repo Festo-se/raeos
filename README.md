@@ -16,9 +16,34 @@ ssh romzn@rae.local
 
 # Via Wifi
 The rae opens an access point with the name "rae" with the password "raeisawesome".
-After successfully connected to the hotspot you can connect 
+After successfully connected to the hotspot you can connect via ssh in the same manner like before:
+
+```bash
+ssh romzn@rae.local
+```
 
 # Via VSCODE SSH Extension
+
+# Enable Internet through Host Computer
+To route the Internet from your Host to the rae several steps are necessary. 
+The following internet configuration is for the Ubuntu linux distribution:
+
+First of all you have to activate Port forwarding
+```bash
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+
+after that you have to set some entries into your iptables to forward the packages correctly
+```bash
+sudo iptables -t nat -A POSTROUTING -s 10.7.0.1/24 -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -s 10.10.0.1/24 -j MASQUERADE
+```
+To save them permanently onto your file System do:
+
+```bash
+sudo apt install iptables-persistent
+sudo iptables-save  > /etc/iptables/rules.v4
+```
 
 ## Backup an Image
 Write SD-Card to an Image
