@@ -1,2 +1,37 @@
-# raeos
-Download the official Operating System for the robot autonomy effector 
+# Raeos
+Download the official Operating System for the robot autonomy effector
+# Connect 
+## Via Ethernet
+To setup an connection to the rae via Ethernet give your interface the right IP. It has to be `10.10.0.10`.
+For Linux based Systems it is:
+```bash
+sudo ifconfig IF 10.10.0.10 netmask 255.255.255.0
+```
+IF is for example eth0. After setting the correct IP Adress you can connect via SSH.
+The Standard-user is `romzn` and the password is `raeisgreat`. Rae hosts an little DNS Server which enables you to reach the System with `rae.local`
+
+```bash
+ssh romzn@rae.local
+```
+
+# Via Wifi
+The rae opens an access point with the name "rae" with the password "raeisawesome".
+After successfully connected to the hotspot you can connect 
+
+# Via VSCODE SSH Extension
+
+## Backup an Image
+Write SD-Card to an Image
+```bash
+sudo dd bs=4M if=/dev/sdb | pv | sudo dd of=raeos18-`date +%d%m%y`.img
+```
+Install PiShrink
+```
+wget https://raw.githubusercontent.com/Drewsif/PiShrink/master/pishrink.sh
+chmod +x pishrink.sh
+sudo mv pishrink.sh /usr/local/bin
+```
+Example for Shrinking an Image
+```
+sudo pishrink.sh pi.img
+```
