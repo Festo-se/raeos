@@ -8,7 +8,9 @@ For Linux based Systems it is:
 sudo ifconfig IF 10.10.0.10 netmask 255.255.255.0
 ```
 IF is for example eth0. After setting the correct IP Adress you can connect via SSH.
-The Standard-user is `romzn` and the password is `raeisgreat`. Rae hosts an little DNS Server which enables you to reach the System with `rae.local`
+The Standard-user is `romzn` and the password is `raeisgreat`. 
+Rae hosts an little DNS Server which enables you to reach the System with `rae.local`.
+
 
 ```bash
 ssh romzn@rae.local
@@ -23,6 +25,8 @@ ssh romzn@rae.local
 ```
 
 # Via VSCODE SSH Extension
+Install the following extension and setup an ssh connection with the `rae.local` domain and the user romzn
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
 
 # Enable Internet through Host Computer
 To route the Internet from your Host to the rae several steps are necessary. 
@@ -44,6 +48,7 @@ To save them permanently onto your file System do:
 sudo apt install iptables-persistent
 sudo iptables-save  > /etc/iptables/rules.v4
 ```
+Now you can test with `ping www.google.de` if the connections works.
 
 ## Backup an Image
 Write SD-Card to an Image
