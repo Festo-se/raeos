@@ -50,6 +50,11 @@ sudo iptables-save  > /etc/iptables/rules.v4
 ```
 Now you can test with `ping www.google.de` if the connections works.
 
+# Add a new user
+if you want you add an new user you have to take care about the serial devices.
+Follow the steps from here:
+https://raspberrypi.stackexchange.com/questions/114366/rpi4-serial-port-not-working-on-either-raspberry-os-or-ubuntu
+
 ## Backup an Image
 Write SD-Card to an Image
 ```bash
