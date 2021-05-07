@@ -9,7 +9,7 @@ sudo ifconfig IF 10.10.0.10 netmask 255.255.255.0
 ```
 IF is for example eth0. After setting the correct IP Adress you can connect via SSH.
 The Standard-user is `romzn` and the password is `raeisgreat`. 
-Rae hosts an little DNS Server which enables you to reach the System with `rae.local`.
+Rae hosts an little DNS Server which enables you to reach the System via `rae.local`.
 
 
 ```bash
