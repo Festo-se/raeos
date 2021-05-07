@@ -53,10 +53,10 @@ Now you can test with `ping www.google.de` if the connections works.
 # Add a new user
 Add a new user and add them to the groups __dialout__ and __tty__
 
-```
+```bash
 sudo adduser otto
-sudo adduser otto dialout
-sudo adduser otto tty
+sudo usermod -a -G tty otto
+sudo usermod -a -G dialout otto
 ```
 
 
