@@ -32,7 +32,7 @@ https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
 To route the Internet from your Host to the rae several steps are necessary. 
 The following internet configuration is for the Ubuntu linux distribution:
 
-First of all you have to activate Port forwarding
+First of all you have to activate Port forwarding on your Host and not on the RAE
 ```bash
 sudo sysctl -w net.ipv4.ip_forward=1
 ```
