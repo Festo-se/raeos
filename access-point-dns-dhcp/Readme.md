@@ -206,7 +206,8 @@ sudo service dnsmasq restart
 ```
 We have to give the wlan0 interface an ip because the inbuilt `netplan` tool was not capable anymore to do this.
 
-Ensure that the access rights are set correctly `sudo chmod a+rw /etc/startupscripts/delayeddnsmasq.sh`
+Ensure that the access rights are set correctly:
+```sudo chmod a+rx /etc/startupscripts/delayeddnsmasq.sh```
 
 Now the server is should be up after the boot sequence.
 
