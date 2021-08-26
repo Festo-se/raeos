@@ -1,5 +1,15 @@
 # Raeos
 Download the official Operating System for the robot autonomy effector
+- [Raeos](#raeos)
+- [Connect](#connect)
+  - [Via Ethernet](#via-ethernet)
+  - [Via Wifi](#via-wifi)
+  - [Via VSCODE SSH Extension](#via-vscode-ssh-extension)
+- [Enable Internet through Host Computer](#enable-internet-through-host-computer)
+- [Add a new user](#add-a-new-user)
+- [Activate the access point in ac-mode](#activate-the-access-point-in-ac-mode)
+- [Backup an Image](#backup-an-image)
+
 # Connect 
 ## Via Ethernet
 To setup an connection to the rae via Ethernet give your interface the right IP. It has to be `10.10.0.10`.
@@ -16,7 +26,7 @@ Rae hosts an little DNS Server which enables you to reach the System via `rae.lo
 ssh romzn@rae.local
 ```
 
-# Via Wifi
+## Via Wifi
 The rae opens an access point with the name "rae" with the password "raeisawesome".
 After successfully connected to the hotspot you can connect via ssh in the same manner like before:
 
@@ -24,7 +34,7 @@ After successfully connected to the hotspot you can connect via ssh in the same 
 ssh romzn@rae.local
 ```
 
-# Via VSCODE SSH Extension
+## Via VSCODE SSH Extension
 Install the following extension and setup an ssh connection with the `rae.local` domain and the user romzn
 https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
 
@@ -59,9 +69,11 @@ sudo usermod -a -G tty otto
 sudo usermod -a -G dialout otto
 ```
 
+# Activate the access point in ac-mode
+The prebuilt image already covers the configuration
+If you want to checkout how its done look [here](access-point-dns-dhcp)
 
-
-## Backup an Image
+# Backup an Image
 Write SD-Card to an Image
 ```bash
 sudo dd bs=4M if=/dev/sdb | pv | sudo dd of=raeos18-`date +%d%m%y`.img
