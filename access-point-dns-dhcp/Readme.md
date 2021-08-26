@@ -8,6 +8,7 @@
       - [1. Make a script which starts the service](#1-make-a-script-which-starts-the-service)
       - [2. Make an entry to crontab](#2-make-an-entry-to-crontab)
       - [3. Call without sudo](#3-call-without-sudo)
+      - [4. Change the netplan](#4-change-the-netplan)
   - [Setup DNS and DHCP for WLAN0 Interface](#setup-dns-and-dhcp-for-wlan0-interface)
     - [1. Diasble the inbuilt resolver](#1-diasble-the-inbuilt-resolver)
     - [2. Create the config file](#2-create-the-config-file)
@@ -130,6 +131,30 @@ Normally it would require to type in the password when using the service command
 romzn ALL=(ALL) NOPASSWD: ALL 
 ```
 
+#### 4. Change the netplan
+`/etc/netplan/10-rae.yaml` looks like
+```bash
+network:
+    version: 2
+    renderer: NetworkManager
+    ethernets:
+        eth0:
+            dhcp4: false
+            gateway4: 10.10.0.10
+            addresses:
+            - 10.10.0.1/24
+        wlan0:
+            dhcp4: false
+            addresses:
+            - 10.7.0.1/24
+```
+Afterwards generate and apply the netplan with:
+
+```bash
+sudo netplan generate
+sudo netplan apply
+```
+Then reboot the system
 ## Setup DNS and DHCP for WLAN0 Interface
 
 ### 1. Diasble the inbuilt resolver
@@ -181,7 +206,10 @@ sudo service dnsmasq restart
 ```
 We have to give the wlan0 interface an ip because the inbuilt `netplan` tool was not capable anymore to do this.
 
-Ensure that the access rights are set correctly `sudo chmod a+rw /etc/startupscripts/delayeddnsmasq.sh`
+Ensure that the access rights are set correctly:
+```bash
+sudo chmod a+rx /etc/startupscripts/delayeddnsmasq.sh
+```
 
 Now the server is should be up after the boot sequence.
 
@@ -197,5 +225,10 @@ wlp3s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 I had no connections problems when i started the realsense camera. I measured a signal strength of around 80-95% in the same room. When the realsense is active it drops to 65%-75%.
 
+ You can measure the signal-strength:
+
+ ```bash
+ nmcli d wifi list
+ ```
 ## Troubleshooting
 * If the wifi ssid named rae is not visible to you. Check if your WiFi adapter support ac-mode (5Ghz)
