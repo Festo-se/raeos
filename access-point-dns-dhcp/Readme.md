@@ -8,6 +8,7 @@
       - [1. Make a script which starts the service](#1-make-a-script-which-starts-the-service)
       - [2. Make an entry to crontab](#2-make-an-entry-to-crontab)
       - [3. Call without sudo](#3-call-without-sudo)
+      - [4. Change the netplan](#4-change-the-netplan)
   - [Setup DNS and DHCP for WLAN0 Interface](#setup-dns-and-dhcp-for-wlan0-interface)
     - [1. Diasble the inbuilt resolver](#1-diasble-the-inbuilt-resolver)
     - [2. Create the config file](#2-create-the-config-file)
@@ -130,6 +131,30 @@ Normally it would require to type in the password when using the service command
 romzn ALL=(ALL) NOPASSWD: ALL 
 ```
 
+#### 4. Change the netplan
+`/etc/netplan/10-rae.yaml` looks like
+```bash
+network:
+    version: 2
+    renderer: NetworkManager
+    ethernets:
+        eth0:
+            dhcp4: false
+            gateway4: 10.10.0.10
+            addresses:
+            - 10.10.0.1/24
+        wlan0:
+            dhcp4: false
+            addresses:
+            - 10.7.0.1/24
+```
+Afterwards generate and apply the netplan with:
+
+```bash
+sudo netplan generate
+sudo netplan apply
+```
+Then reboot the system
 ## Setup DNS and DHCP for WLAN0 Interface
 
 ### 1. Diasble the inbuilt resolver
