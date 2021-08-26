@@ -225,5 +225,10 @@ wlp3s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 
 I had no connections problems when i started the realsense camera. I measured a signal strength of around 80-95% in the same room. When the realsense is active it drops to 65%-75%.
 
+ You can measure the signal-strength:
+
+ ```bash
+ nmcli d wifi list
+ ```
 ## Troubleshooting
 * If the wifi ssid named rae is not visible to you. Check if your WiFi adapter support ac-mode (5Ghz)
