@@ -10,6 +10,7 @@ Download the official Operating System for the robot autonomy effector
 - [Add a new user](#add-a-new-user)
 - [Activate the access point in ac-mode](#activate-the-access-point-in-ac-mode)
 - [Backup an Image](#backup-an-image)
+- [Tested WiFi AC USB-Stick for Linux Ubuntu](#tested-wifi-ac-usb-stick-for-linux-ubuntu)
 
 # Connect 
 ## Via Ethernet
@@ -92,4 +93,24 @@ sudo mv pishrink.sh /usr/local/bin
 Example for Shrinking an Image
 ```
 sudo pishrink.sh pi.img
+```
+
+# Tested WiFi AC USB-Stick for Linux Ubuntu
+Successfuly tested an USB Stick [TP-Link Archer T3U AC1300 ](https://www.amazon.de/gp/product/B07M69276N/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1)
+
+<p align="center">
+<img src="https://m.media-amazon.com/images/I/51LsYUMKHbL._AC_SL1000_.jpg" width="170" />
+</p>
+
+The drivers has to be installed manually:
+
+```bash
+git clone https://github.com/cilynx/rtl88x2bu.git
+cd rtl88x2bu
+VER=$(sed -n 's/\PACKAGE_VERSION="\(.*\)"/\1/p' dkms.conf)
+sudo rsync -rvhP ./ /usr/src/rtl88x2bu-${VER}
+sudo dkms add -m rtl88x2bu -v ${VER}
+sudo dkms build -m rtl88x2bu -v ${VER}
+sudo dkms install -m rtl88x2bu -v ${VER}
+sudo modprobe 88x2bu
 ```
