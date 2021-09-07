@@ -5,6 +5,7 @@ Download the official Operating System for the robot autonomy effector
   - [Via Ethernet](#via-ethernet)
   - [Via Wifi](#via-wifi)
   - [Via VSCODE SSH Extension](#via-vscode-ssh-extension)
+- [Recommended network topology](#recommended-network-topology)
 - [Enable Internet through Host Computer](#enable-internet-through-host-computer)
 - [Add a new user](#add-a-new-user)
 - [Activate the access point in ac-mode](#activate-the-access-point-in-ac-mode)
@@ -21,7 +22,6 @@ IF is for example eth0. After setting the correct IP Adress you can connect via 
 The Standard-user is `romzn` and the password is `raeisgreat`. 
 Rae hosts an little DNS Server which enables you to reach the System via `rae.local`.
 
-
 ```bash
 ssh romzn@rae.local
 ```
@@ -37,6 +37,11 @@ ssh romzn@rae.local
 ## Via VSCODE SSH Extension
 Install the following extension and setup an ssh connection with the `rae.local` domain and the user romzn
 https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh
+
+# Recommended network topology
+The most comfortable communication with the system is via wireless-lan. For that you have to connect your Host and the Robot-control-unit with the rae accesspoint like mentioned before.
+
+![](dias/network-topology.png)
 
 # Enable Internet through Host Computer
 To route the Internet from your Host to the rae several steps are necessary. 
